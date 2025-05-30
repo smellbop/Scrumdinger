@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EA8456F02DE9BA6600A6B7F0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA8456EF2DE9BA6000A6B7F0 /* .gitignore */; };
+		EA8456F22DE9BCF100A6B7F0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EA8456F12DE9BCEC00A6B7F0 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EAC731562DE9B0380054BE97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA8456EF2DE9BA6000A6B7F0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EA8456F12DE9BCEC00A6B7F0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EAC731482DE9B0370054BE97 /* Scrumdinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrumdinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC731552DE9B0380054BE97 /* ScrumdingerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrumdingerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC7315F2DE9B0390054BE97 /* ScrumdingerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrumdingerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +82,8 @@
 		EAC7313F2DE9B0370054BE97 = {
 			isa = PBXGroup;
 			children = (
+				EA8456F12DE9BCEC00A6B7F0 /* README.md */,
+				EA8456EF2DE9BA6000A6B7F0 /* .gitignore */,
 				EAC7314A2DE9B0370054BE97 /* Scrumdinger */,
 				EAC731582DE9B0380054BE97 /* ScrumdingerTests */,
 				EAC731622DE9B0390054BE97 /* ScrumdingerUITests */,
@@ -212,6 +221,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8456F22DE9BCF100A6B7F0 /* README.md in Resources */,
+				EA8456F02DE9BA6600A6B7F0 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
