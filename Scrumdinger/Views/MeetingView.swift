@@ -13,10 +13,11 @@ struct MeetingView: View {
     @Environment(\.modelContext) private var context
     let scrum: DailyScrum
     @State var scrumTimer = ScrumTimer()
+    @Binding var errorWrapper: ErrorWrapper?
     
     private let player = AVPlayer.dingPlayer()
     
-    fileprivate func startScrum() {
+    private func startScrum() {
         scrumTimer.reset(
             lengthInMinutes: scrum.lengthInMinutes,
             attendeeNames: scrum.attendees.map { $0.name}
@@ -28,10 +29,11 @@ struct MeetingView: View {
         scrumTimer.startScrum()
     }
     
-    fileprivate func endScrum() {
+    private func endScrum() throws {
         scrumTimer.stopScrum()
         let newHistory = History(attendees: scrum.attendees)
         scrum.history.insert(newHistory, at: 0)
+        try context.save()
     }
     
     var body: some View {
@@ -55,13 +57,18 @@ struct MeetingView: View {
             startScrum()
         }
         .onDisappear{
-            endScrum()
+            do {
+                try endScrum()
+            } catch {
+                errorWrapper = ErrorWrapper(error: error, guidance: "JFI, pal.")
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+    
 }
 
 #Preview {
-   let scrum = DailyScrum.sampleData[0]
-    MeetingView(scrum: scrum)
+   var scrum = DailyScrum.sampleData[0]
+    MeetingView(scrum: scrum, errorWrapper: .constant(nil))
 }

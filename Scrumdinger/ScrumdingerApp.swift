@@ -15,5 +15,7 @@ struct ScrumdingerApp: App {
             ScrumsView()
         }
         .modelContainer(for: DailyScrum.self)
+        //for testign error modal
+//        .modelContainer(try! .init(for: DailyScrum.self, configurations: .init(allowsSave: false)))
     }
 }

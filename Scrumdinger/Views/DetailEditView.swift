@@ -17,6 +17,7 @@ struct DetailEditView: View {
     @State private var theme: Theme
     @State private var lengthInMinutesAsDouble: Double
     @State private var attendees: [Attendee]
+    @State private var errorWrapper: ErrorWrapper?
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     
@@ -87,16 +88,26 @@ struct DetailEditView: View {
                 }
                 ToolbarItem(placement: .confirmationAction){
                     Button("Save"){
-                        saveEdits()
-                        dismiss()
+                        do {
+                            try saveEdits()
+                            dismiss()
+                        } catch {
+                            errorWrapper = ErrorWrapper(error: error, guidance: "Please try again later.")
+                        }
                     }
                 }
+            }
+            .sheet(item: $errorWrapper){
+                dismiss()
+            } content: {
+                wrapper in
+                ErrorView(errorWrapper: wrapper)
             }
         }
         .navigationTitle(scrum.title)
     }
     
-    private func saveEdits() {
+    private func saveEdits() throws {
         scrum.title = title
         scrum.theme = theme
         scrum.attendees = attendees
@@ -106,11 +117,11 @@ struct DetailEditView: View {
             context.insert(scrum)
         }
         
-        try? context.save()
+        try context.save()
     }
 }
 
 #Preview {
-    let scrum = DailyScrum.sampleData[0]
-    DetailEditView(scrum: scrum)
+    @Previewable @Query(sort: \DailyScrum.title) var scrums: [DailyScrum]
+    DetailEditView(scrum: scrums[0])
 }
